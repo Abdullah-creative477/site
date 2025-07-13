@@ -1,0 +1,102 @@
+
+{% extends "index.html" %}
+
+
+{% block title %}
+    Register
+{% endblock %}
+
+{% block main %}
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: url('{{ url_for("static", filename="name.jpg") }}') no-repeat center center/cover;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 320px;
+        }
+        h2 {
+            color: #2F80ED;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .toggle-password {
+            cursor: pointer;
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .password-container {
+            position: relative;
+        }
+        button {
+            background: linear-gradient(135deg, #2F80ED, #56CCF2);
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            opacity: 0.9;
+        }
+        .error {
+            color: red;
+            font-size: 12px;
+            display: none;
+        }
+    </style>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registerForm" action="/register" method="post">
+            <input type="text" name="name" id="name" placeholder="Name" required>
+            <input type="email" name="email" id="email" placeholder="Email Address" required>
+            <input type="text" name="country" id="country" placeholder="Country" required>
+            <input type="tel" name="phone" id="phone" placeholder="Phone" required>
+            <div class="password-container">
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <span class="toggle-password" onclick="togglePassword()">👁️</span>
+            </div>
+            <p id="error-message" class="error">Passwords must be at least 6 characters!</p>
+            <button type="submit">Create Account</button>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            let passwordField = document.getElementById("password");
+            passwordField.type = passwordField.type === "password" ? "text" : "password";
+        }
+
+        document.getElementById("registerForm").addEventListener("submit", function(event) {
+            let password = document.getElementById("password").value;
+            let errorMessage = document.getElementById("error-message");
+
+            if (password.length < 6) {
+                event.preventDefault();
+                errorMessage.style.display = "block";
+            }
+        });
+    </script>
+{% endblock %}

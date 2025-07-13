@@ -1,0 +1,135 @@
+{% extends "index.html" %}
+
+{% block title %}Photo Proofing{% endblock %}
+
+{% block main %}
+    <style>
+        .header {
+
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            padding: 20px;
+            text-align: center;
+            background: black;
+            color: white;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item p {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .approved::after {
+            content: "✔";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: green;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+        }
+
+        .rejected::after {
+            content: "✖";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: red;
+            color: white;
+            padding: 5px;
+            border-radius: 50%;
+        }
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .background-video {
+            width: 100%;
+            height: 100vh;
+            object-fit: cover;
+        }
+    </style>
+
+      <div class="video-container">
+        <video class="background-video" autoplay loop muted playsinline>
+            <source src="{{ url_for('static', filename='painting.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+
+    <section class="header">
+        <h1>PHOTO GALLERY</h1>
+        <h2>"Welcome to Our Photography Gallery!</h2>
+         <h>📸</h>
+
+    </section>
+
+    <section class="gallery">
+        <div class="gallery-item approved">
+            <img src="{{ url_for('static', filename='1.PNG') }}" alt="Sweet">
+            <p>Sweet </p>
+        </div>
+        <div class="gallery-item approved">
+            <img src="{{ url_for('static', filename='2.PNG') }}" alt="just">
+            <p>are</p>
+        </div>
+        <div class="gallery-item approved">
+            <img src="{{ url_for('static', filename='3.PNG') }}" alt="like">
+            <p>U</p>
+        </div>
+        </div>
+
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='4.PNG') }}" alt="my">
+            <p>the</p>
+        </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='5.PNG') }}" alt="princess">
+            <p>Most</p>
+            </div>
+        <div class="gallery-item">
+            <img src="{{ url_for('static', filename='6.PNG') }}" alt="Portrait Shot">
+            <p>Sweetest</p>
+        </div>
+    </section>
+{% endblock %}

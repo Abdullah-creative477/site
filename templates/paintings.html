@@ -1,0 +1,123 @@
+{% extends "index.html" %}
+
+{% block title %}Paintings{% endblock %}
+
+{% block main %}
+
+    <style>
+        /* Background video styling */
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .background-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Cursor effect */
+
+        /* Painting section */
+        .painting-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 50px;
+            margin: 20px auto;
+            max-width: 1200px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.8s ease-in-out;
+        }
+
+        .painting-container.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .painting-text {
+            flex: 1;
+            padding-right: 20px;
+            font-size: 1.2em;
+            color: #000;
+        }
+
+        .painting-image img {
+            width: 350px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s;
+        }
+
+        .painting-image img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+
+    <div class="video-container">
+        <video class="background-video" autoplay loop muted playsinline>
+            <source src="{{ url_for('static', filename='painting.mp4') }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="paintings-section">
+        <div class="painting-container">
+            <div class="painting-text">
+                <p>"Starry Night" by Van Gogh captures a dreamlike interpretation of the night sky, filled with swirling blues and vibrant stars that seem alive with motion.</p>
+            </div>
+            <div class="painting-image">
+                <img src="{{ url_for('static', filename='2.jpg') }}" alt="Starry Night">
+            </div>
+        </div>
+        <div class="painting-container">
+            <div class="painting-text">
+                <p>"Starry Night" by Van Gogh captures a dreamlike interpretation of the night sky, filled with swirling blues and vibrant stars that seem alive with motion.</p>
+            </div>
+            <div class="painting-image">
+                <img src="{{ url_for('static', filename='3.jpg') }}" alt="Starry Night">
+            </div>
+        </div>
+        <div class="painting-container">
+            <div class="painting-text">
+                <p>"Starry Night" by Van Gogh captures a dreamlike interpretation of the night sky, filled with swirling blues and vibrant stars that seem alive with motion.</p>
+            </div>
+            <div class="painting-image">
+                <img src="{{ url_for('static', filename='5.avif') }}" alt="Starry Night">
+            </div>
+        </div>
+
+        <div class="painting-container">
+            <div class="painting-text">
+                <p>"The Persistence of Memory" by Salvador Dalí is a surreal masterpiece where time melts and bends, questioning reality and perception.</p>
+            </div>
+            <div class="painting-image">
+                <img src="{{ url_for('static', filename='images.jpg') }}" alt="The Persistence of Memory">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Scroll animation for fade-in effect
+        document.addEventListener("scroll", function () {
+            let elements = document.querySelectorAll(".painting-container");
+            elements.forEach(el => {
+                if (el.getBoundingClientRect().top < window.innerHeight * 0.8) {
+                    el.classList.add("show");
+                }
+            });
+        });
+    </script>
+{% endblock %}

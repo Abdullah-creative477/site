@@ -1,0 +1,90 @@
+{% extends "index.html" %}
+
+{% block title %}Transform Canvas into Creations{% endblock %}
+
+{% block main %}
+
+    <style>
+        body {
+            background: linear-gradient(to bottom, #f9f5f0, #e6dfd6);
+            font-family: 'Times New Roman', serif;
+        }
+        .blog-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: #f9f5f0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top:100px;
+        }
+
+        .blog-header {
+            text-align: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #5a3e36;
+        }
+
+        .blog-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .blog-image {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .blog-section {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .blog-text {
+            flex: 1;
+            padding-right: 20px;
+            font-size: 1.2em;
+            color: #3a2c2a;
+            line-height: 1.6;
+        }
+
+        .blog-thumbnail {
+            width: 250px;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+
+    <div class="blog-container">
+        <div class="blog-header">TRANSFORM CANVAS INTO CREATIONS</div>
+        <div class="blog-meta">
+            <span>Issue No. 85</span>
+            <span>Website Exclusive</span>
+            <span>November 12, 2025</span>
+        </div>
+
+        <div class="blog-section">
+            <div class="blog-text">
+                <h2>UNDERSTANDING THE ART OF TRANSFORMING CANVAS INTO CREATIONS</h2>
+                <p>In the age of social media, artistic expression has evolved and gained a larger audience. Platforms like Instagram and Pinterest allow artists to share their work and connect with creatives worldwide. Painting, in particular, has seen a resurgence, with artists experimenting with new techniques to captivate audiences.</p>
+            </div>
+            <img class="blog-thumbnail" src="{{ url_for('static', filename='blog1.jpg') }}" alt="Painting">
+        </div>
+
+        <div class="blog-section">
+            <div class="blog-text">
+                <h2>ESSENTIAL PAINTING TECHNIQUES FOR ARTISTS</h2>
+                <p>Brushwork, color mixing, layering, glazing, and texturing are fundamental techniques every artist should master. These skills help elevate your paintings, making them stand out both offline and in the digital realm.</p>
+            </div>
+            <img class="blog-thumbnail" src="{{ url_for('static', filename='blog.PNG') }}" alt="Painting Techniques">
+        </div>
+
+        <p style="text-align: center; font-weight: bold;">www.mahtistry.com</p>
+    </div>
+{% endblock %}
